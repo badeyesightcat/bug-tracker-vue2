@@ -1,89 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --white: #fff;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --primeMain: 3, 32, 220; /* rgb(3, 32, 220)*/
+  --primeLight: 85, 106, 237; /* rgb(85, 106, 237)*/
+  --secondaryMain: 214, 242, 35; /* rgb(214, 242, 35)*/
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --neutral900: 12, 12, 12; /* rgb(12, 12, 12)*/
+  --neutral800: 47, 47, 49; /* rgb(47, 47, 49)*/
+  --neutral700: 72, 72, 75; /* rgb(72, 72, 75)*/
+  --neutral600: 132, 134, 134; /* rgb(132, 134, 134)*/
+  --neutral500: 198, 202, 204; /* rgb(198, 202, 204)*/
+  --neutral400: 211, 217, 221; /* rgb(211, 217, 221)*/
+  --neutral300: 222, 228, 231; /* rgb(222, 228, 231)*/
+  --neutral200: 245, 245, 245; /* rgb(245, 245, 245)*/
+
+  --fontColor: 47, 47, 49; /* rgb(47, 47, 49)*/
+
+  --fontFamily: 'Epilogue', sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  font-family: var(--fontFamily);
+  font-size: 1.0625rem;
+  box-sizing: border-box;
+}
+
+#root {
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 300px auto;
+  grid-template-areas: 'sidebar page-container';
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.brandname {
+  width: 15rem;
+  text-indent: 1rem;
+  font-size: 2rem;
+  line-height: 4rem;
+  letter-spacing: 1.25rem;
+  text-transform: uppercase;
+  color: rgb(var(--neutral900));
+  font-weight: 700;
+  background-color: rgb(var(--secondaryMain));
+  border-radius: 4rem 0 4rem 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.brandname.small {
+  letter-spacing: 0.5rem;
 }
 
-.card {
-  padding: 2em;
+.page-container {
+  grid-area: page-container;
+  padding: 0 2rem 3rem;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.page-title {
+  font: 5rem/1 var(--fontFamily);
+  margin: -1.25rem 0 2rem;
+  color: rgb(var(--neutral900));
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.theme-light {
+  background-color: rgb(var(--neutral100));
+}
+
+.theme-dark {
+  background-color: rgb(var(--neutral900));
+}
+
+.drawer-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 10;
+}
+.backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(var(--neutral900), 0.4);
+}
+
+.drawer {
+  position: relative;
+  z-index: 1;
+  width: 80vw;
+  height: 100vh;
+  background-color: rgb(var(--neutral200));
+  border-radius: 4rem 0 0 4rem;
+  border: 0.25rem solid rgb(var(--neutral900));
+  border-right-color: transparent;
+}
+
+.btn-close-drawer {
+  position: absolute;
+  transform: translate(-5.125rem, 2rem);
+  border-radius: 50%;
+  background-color: rgb(var(--neutral900));
+  width: 4rem;
+  height: 4rem;
+  color: rgb(var(--neutral200));
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.btn-close-drawer:hover {
+  transform: translate(-5.5rem, 2rem);
+  box-shadow: 0.625rem 0 0 rgb(var(--neutral700));
+  transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
